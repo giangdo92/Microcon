@@ -1,0 +1,9 @@
+1. Initiate the code (powered) --> wait for Bluetooth song signals
+2. Once readings are obtained  --> FFT function
+3. Collect data                --> Split/scale data and dump excess data
+4. Assuming we have what we need --> Light display grid
+
+Bluetooth
+1. Find module with library
+
+FFT Function
