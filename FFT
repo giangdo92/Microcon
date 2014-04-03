@@ -1,0 +1,52 @@
+/*Test file for FFT
+Going to pray this works ...*/
+
+#define OCTAVE 1 //turns on octave function output
+#define FFT_N 256 //sets FFT scale 
+
+#include <FFT.H> //include library
+
+int byte_counter = 0;
+
+void setup()
+{
+  Serial.begin(115200); //uses serial port, sets data rate to 115200 bps
+  TIMSK0 = 0; //turn off timer0 for lower jitter
+  ADCSRA = 0xe5; //sets adc to free running mode
+                 //free running indicates beginning a conversion only once
+                 //ADC will auto start following conversion as soon as previous one finishes
+  //might add more here once I learn the meaning of all this jargon
+}
+
+void loop() {
+  //tests to ensure serial data is received
+  //only necessary for current testing on computer :)
+  if(Serial.available() > 0) { 
+    byte_counter = Serial.read(); //reads incoming serial data
+    Serial.print("Data Received");
+  }
+  
+  while(1) { //reduces jitter
+    cli(); //disables global interrupts
+    for (int = 0; i < 512; i += 2) { //saves 256 samples
+    //**need to add loop to ensure ADC is ready**
+    //...
+    //..
+    //..
+    fft_input[i] = k; //put real data into even bins;
+    fft_input[i+1] = 0; //set odd bins to 0;
+    }
+  
+  fft_window(); //window data for better frequency response
+  fft_reorder(); //reorders data before performing fft
+  fft_run(); //processes data in fft
+  fft_mag_octave(); //take output of the fft
+  sei(); //turns interrupts back on
+  Serial.write(255); //send a start byte
+  Serial.write(fft_oct_out, 128); //sends out the data
+  }
+}
+  
+
+    
+    
